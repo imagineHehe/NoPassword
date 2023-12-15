@@ -29,32 +29,6 @@ public class SecurityConfig{
         this.userDetailsServiceImpl = userDetailsServiceImpl;
     }
 
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception{
-//        http.csrf().disable()
-//                .authorizeRequests()
-//                .antMatchers("/admin").hasRole("ADMIN")
-//                .antMatchers("/login", "/registration", "/error", "/api/**").anonymous()
-//                .anyRequest().hasAnyRole("USER", "ADMIN")
-//                .and()
-//                .formLogin().loginPage("/login")
-//                .loginProcessingUrl("/process_login")
-//                .defaultSuccessUrl("/user", true)
-//                .failureUrl("/login?error")
-//                .and()
-//                .logout().logoutUrl("/logout").logoutSuccessUrl("/login");
-//    }
-    //    @Bean
-//    public UserDetailsService userDetailsService(){
-//        return userDetailsServiceImpl.loadUserByUsername("hehe").;
-//    }
-
-    //Настройка аутентификации
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(userDetailsServiceImpl)
-//                .passwordEncoder(getPasswordEncoder());
-//    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
@@ -85,7 +59,6 @@ public class SecurityConfig{
         authenticationManagerBuilder.userDetailsService(userDetailsServiceImpl).passwordEncoder(encoder());
         return authenticationManagerBuilder;
     }
-
 
     @Bean
     public PasswordEncoder encoder(){
