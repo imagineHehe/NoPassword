@@ -1,4 +1,4 @@
-package ru.mironov.projects.NoPassword.models.user;
+package ru.mironov.projects.noPassword.models.user;
 
 public enum UserRole {
     ROLE_USER,

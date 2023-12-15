@@ -1,11 +1,11 @@
-package ru.mironov.projects.NoPassword.util;
+package ru.mironov.projects.noPassword.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import ru.mironov.projects.NoPassword.models.user.User;
-import ru.mironov.projects.NoPassword.services.UserService;
+import ru.mironov.projects.noPassword.models.user.User;
+import ru.mironov.projects.noPassword.services.UserService;
 
 @Component
 public class UserValidator implements Validator {

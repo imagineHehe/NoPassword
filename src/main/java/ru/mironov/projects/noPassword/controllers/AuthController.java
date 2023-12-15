@@ -1,4 +1,4 @@
-package ru.mironov.projects.NoPassword.controllers;
+package ru.mironov.projects.noPassword.controllers;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.mironov.projects.NoPassword.dto.UserDTO;
-import ru.mironov.projects.NoPassword.models.user.User;
-import ru.mironov.projects.NoPassword.services.UserService;
-import ru.mironov.projects.NoPassword.util.UserValidator;
+import ru.mironov.projects.noPassword.models.user.User;
+import ru.mironov.projects.noPassword.services.UserService;
+import ru.mironov.projects.noPassword.util.UserValidator;
 
 
 @Controller

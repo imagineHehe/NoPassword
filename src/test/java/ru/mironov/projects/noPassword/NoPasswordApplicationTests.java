@@ -1,4 +1,4 @@
-package ru.mironov.projects.NoPassword;
+package ru.mironov.projects.noPassword;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

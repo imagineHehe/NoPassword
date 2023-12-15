@@ -1,9 +1,9 @@
-package ru.mironov.projects.NoPassword.security;
+package ru.mironov.projects.noPassword.security;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import ru.mironov.projects.NoPassword.models.user.User;
+import ru.mironov.projects.noPassword.models.user.User;
 
 import java.util.Collection;
 import java.util.Collections;

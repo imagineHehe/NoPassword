@@ -1,14 +1,14 @@
-package ru.mironov.projects.NoPassword.services;
+package ru.mironov.projects.noPassword.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.mironov.projects.NoPassword.dto.UserDTO;
-import ru.mironov.projects.NoPassword.models.user.User;
-import ru.mironov.projects.NoPassword.models.user.UserRole;
-import ru.mironov.projects.NoPassword.repositories.UserRepository;
-import ru.mironov.projects.NoPassword.util.UserNotFoundException;
+import ru.mironov.projects.noPassword.dto.UserDTO;
+import ru.mironov.projects.noPassword.models.user.User;
+import ru.mironov.projects.noPassword.models.user.UserRole;
+import ru.mironov.projects.noPassword.repositories.UserRepository;
+import ru.mironov.projects.noPassword.util.UserNotFoundException;
 
 import java.util.List;
 import java.util.Optional;

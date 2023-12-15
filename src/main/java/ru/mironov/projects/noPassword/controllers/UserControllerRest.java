@@ -1,4 +1,4 @@
-package ru.mironov.projects.NoPassword.controllers;
+package ru.mironov.projects.noPassword.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -6,11 +6,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-import ru.mironov.projects.NoPassword.models.user.User;
-import ru.mironov.projects.NoPassword.security.UserDetailsImpl;
-import ru.mironov.projects.NoPassword.services.UserService;
-import ru.mironov.projects.NoPassword.util.UserErrorResponse;
-import ru.mironov.projects.NoPassword.util.UserNotFoundException;
+import ru.mironov.projects.noPassword.models.user.User;
+import ru.mironov.projects.noPassword.security.UserDetailsImpl;
+import ru.mironov.projects.noPassword.services.UserService;
+import ru.mironov.projects.noPassword.util.UserErrorResponse;
+import ru.mironov.projects.noPassword.util.UserNotFoundException;
 
 import java.util.List;
 

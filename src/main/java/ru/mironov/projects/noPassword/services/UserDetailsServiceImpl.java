@@ -1,13 +1,13 @@
-package ru.mironov.projects.NoPassword.services;
+package ru.mironov.projects.noPassword.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.mironov.projects.NoPassword.models.user.User;
-import ru.mironov.projects.NoPassword.repositories.UserRepository;
-import ru.mironov.projects.NoPassword.security.UserDetailsImpl;
+import ru.mironov.projects.noPassword.models.user.User;
+import ru.mironov.projects.noPassword.repositories.UserRepository;
+import ru.mironov.projects.noPassword.security.UserDetailsImpl;
 
 import java.util.Optional;
 

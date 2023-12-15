@@ -1,6 +1,5 @@
-package ru.mironov.projects.NoPassword.controllers;
+package ru.mironov.projects.noPassword.controllers;
 
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,12 +9,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
-import ru.mironov.projects.NoPassword.dto.UserDTO;
-import ru.mironov.projects.NoPassword.models.user.User;
-import ru.mironov.projects.NoPassword.services.UserService;
-import ru.mironov.projects.NoPassword.util.UserErrorResponse;
-import ru.mironov.projects.NoPassword.util.UserNotCreatedException;
-import ru.mironov.projects.NoPassword.util.UserValidator;
+import ru.mironov.projects.noPassword.models.user.User;
+import ru.mironov.projects.noPassword.services.UserService;
+import ru.mironov.projects.noPassword.util.UserErrorResponse;
+import ru.mironov.projects.noPassword.util.UserNotCreatedException;
+import ru.mironov.projects.noPassword.util.UserValidator;
 
 import java.util.List;
 

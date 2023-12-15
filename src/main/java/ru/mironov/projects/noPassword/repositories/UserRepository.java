@@ -1,8 +1,8 @@
-package ru.mironov.projects.NoPassword.repositories;
+package ru.mironov.projects.noPassword.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ru.mironov.projects.NoPassword.models.user.User;
+import ru.mironov.projects.noPassword.models.user.User;
 
 import java.util.Optional;
 

@@ -1,4 +1,4 @@
-package ru.mironov.projects.NoPassword.util;
+package ru.mironov.projects.noPassword.util;
 
 public class UserErrorResponse {
     private String message;

@@ -1,4 +1,4 @@
-package ru.mironov.projects.NoPassword.dto;
+package ru.mironov.projects.noPassword.dto;
 
 
 import jakarta.validation.constraints.NotEmpty;
