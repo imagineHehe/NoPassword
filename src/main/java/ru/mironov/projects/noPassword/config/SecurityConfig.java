@@ -16,7 +16,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import ru.mironov.projects.noPassword.services.UserDetailsServiceImpl;
+import ru.mironov.projects.noPassword.security.service.UserDetailsServiceImpl;
 
 @EnableWebSecurity
 @Configuration
@@ -34,7 +34,7 @@ public class SecurityConfig{
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/login").permitAll()
+                        .requestMatchers("/login", "/registration").permitAll()
                         .anyRequest().hasAnyRole("USER", "ADMIN"))
                 .formLogin(login -> login
                         .loginPage("/login")
