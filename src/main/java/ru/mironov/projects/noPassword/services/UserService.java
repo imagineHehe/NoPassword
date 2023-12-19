@@ -25,12 +25,13 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public List<User> findAll(){
+    public List<User> findAll() {
         return userRepository.findAll();
     }
-    public User findOne(int id){
+
+    public User findOne(int id) {
         Optional<User> user = userRepository.findById(id);
-        if(user.isEmpty())
+        if (user.isEmpty())
             throw new UserNotFoundException(id);
         return user.get();
     }
@@ -40,25 +41,26 @@ public class UserService {
 //    }
 
     @Transactional
-    public void register(User newUser){
+    public void register(User newUser) {
         String encodedPassword = passwordEncoder.encode(newUser.getPassword());
         newUser.setPassword(encodedPassword);
         newUser.setRole(UserRole.ROLE_USER);
         System.out.println(newUser);
         userRepository.save(newUser);
     }
+
     @Transactional
-    public void changePassword(User user){
+    public void changePassword(User user) {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
         userRepository.save(user);
     }
 
-    public boolean isUserExists(String username){
+    public boolean isUserExists(String username) {
         return userRepository.existsByUsername(username);
     }
 
-    private User convertToUser(UserDTO userDTO){
+    private User convertToUser(UserDTO userDTO) {
         User user = new User();
         user.setUsername(userDTO.getUsername());
         user.setPassword(userDTO.getPassword());
@@ -69,7 +71,7 @@ public class UserService {
     private void enrichUser(User user) {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-        if(user.getRole() == null)
+        if (user.getRole() == null)
             user.setRole(UserRole.ROLE_USER);
     }
 }

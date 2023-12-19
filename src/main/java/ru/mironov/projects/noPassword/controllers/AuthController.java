@@ -31,17 +31,18 @@ public class AuthController {
 
 
     @GetMapping("/login")
-    public ResponseEntity<HttpStatus> login(){
+    public ResponseEntity<HttpStatus> login() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if(!authentication.getPrincipal().equals("anonymousUser"))
+        if (!authentication.getPrincipal().equals("anonymousUser"))
             return new ResponseEntity<HttpStatus>(HttpStatus.FOUND);
         return ResponseEntity.ok(HttpStatus.OK); //"Это страница логина, совершите Post запрос для входа";
     }
+
     @PostMapping("/registration")
     public ResponseEntity<HttpStatus> registration(@RequestBody @Valid User registeredUser,
-                                                   BindingResult bindingResult){
+                                                   BindingResult bindingResult) {
         userValidator.validate(registeredUser, bindingResult);
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             StringBuilder errorMsg = new StringBuilder();
             List<FieldError> errors = bindingResult.getFieldErrors();
             for (FieldError error : errors) {
@@ -56,8 +57,8 @@ public class AuthController {
     }
 
     @ExceptionHandler
-    private ResponseEntity<UserErrorResponse> handleException(UserNotCreatedException e){
-        UserErrorResponse response = new UserErrorResponse(e.getMessage() , System.currentTimeMillis());
-        return new ResponseEntity<>(response , HttpStatus.BAD_REQUEST);
+    private ResponseEntity<UserErrorResponse> handleException(UserNotCreatedException e) {
+        UserErrorResponse response = new UserErrorResponse(e.getMessage(), System.currentTimeMillis());
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 }

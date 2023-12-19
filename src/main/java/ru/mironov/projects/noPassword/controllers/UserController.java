@@ -28,7 +28,7 @@ public class UserController {
     //User control
     @GetMapping("/user")
     @ResponseBody
-    public User userPage(){
+    public User userPage() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         return userDetails.getUser();
@@ -37,20 +37,20 @@ public class UserController {
     //Admin control
     @GetMapping("/admin/users")
     @ResponseBody
-    public List<User> usersList(){
+    public List<User> usersList() {
         return userService.findAll();
     }
 
     @GetMapping("/admin/user/{id}")
     @ResponseBody
-    public User oneUser(@PathVariable("id") int id){
+    public User oneUser(@PathVariable("id") int id) {
         return userService.findOne(id);
     }
 
     //Handler
     @ExceptionHandler
-    private ResponseEntity<UserErrorResponse> handleException(UserNotFoundException e){
+    private ResponseEntity<UserErrorResponse> handleException(UserNotFoundException e) {
         UserErrorResponse response = new UserErrorResponse(String.format("User с id %d не найден", e.getId()), System.currentTimeMillis());
-        return new ResponseEntity<>(response , HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 }

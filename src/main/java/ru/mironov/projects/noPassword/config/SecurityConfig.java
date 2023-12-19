@@ -20,7 +20,7 @@ import ru.mironov.projects.noPassword.security.service.UserDetailsServiceImpl;
 
 @EnableWebSecurity
 @Configuration
-public class SecurityConfig{
+public class SecurityConfig {
     private final UserDetailsServiceImpl userDetailsServiceImpl;
 
 
@@ -31,7 +31,7 @@ public class SecurityConfig{
 
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/login", "/registration").permitAll()
@@ -61,7 +61,7 @@ public class SecurityConfig{
     }
 
     @Bean
-    public PasswordEncoder encoder(){
+    public PasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
     }
 }
