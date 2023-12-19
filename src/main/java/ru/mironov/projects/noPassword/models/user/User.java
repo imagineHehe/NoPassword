@@ -1,12 +1,14 @@
 package ru.mironov.projects.noPassword.models.user;
 
 
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.Size;
+import ru.mironov.projects.noPassword.models.password.Password;
+
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -22,6 +24,12 @@ public class User {
     @Size(min = 3, message = "Пароль должен состоять минимум из 3 символов")
     @Column(name = "password")
     private String password;
+    @NotEmpty(message = "Почта не может быть пустой")
+    @Size(min = 10, message = "Данное поле должно содержать минимум 10 символов")
+    @Column(name = "email")
+    private String email;
+    @OneToMany(mappedBy = "owner")
+    private List<Password> passwords;
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private UserRole role;
@@ -29,14 +37,18 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password) {
+    public User(String username, String password, String email, List<Password> passwords, UserRole role) {
         this.username = username;
         this.password = password;
+        this.email = email;
+        this.passwords = passwords;
+        this.role = role;
     }
 
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -44,6 +56,7 @@ public class User {
     public String getUsername() {
         return username;
     }
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -51,6 +64,7 @@ public class User {
     public String getPassword() {
         return password;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
@@ -58,7 +72,24 @@ public class User {
     public UserRole getRole() {
         return role;
     }
+
     public void setRole(UserRole role) {
         this.role = role;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<Password> getPasswords() {
+        return passwords;
+    }
+
+    public void setPasswords(List<Password> passwords) {
+        this.passwords = passwords;
     }
 }
