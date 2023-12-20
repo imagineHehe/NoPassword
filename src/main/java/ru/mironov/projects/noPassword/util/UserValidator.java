@@ -4,27 +4,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+import ru.mironov.projects.noPassword.dto.UserDTO;
 import ru.mironov.projects.noPassword.models.user.User;
-import ru.mironov.projects.noPassword.services.UserService;
+import ru.mironov.projects.noPassword.services.UserServiceJPA;
 
 @Component
 public class UserValidator implements Validator {
-    private final UserService userService;
+    private final UserServiceJPA userServiceJPA;
 
     @Autowired
-    public UserValidator(UserService userService) {
-        this.userService = userService;
+    public UserValidator(UserServiceJPA userServiceJPA) {
+        this.userServiceJPA = userServiceJPA;
     }
 
     @Override
     public boolean supports(Class<?> aClass) {
-        return User.class.equals(aClass);
+        return UserDTO.class.equals(aClass);
     }
 
     @Override
     public void validate(Object o, Errors errors) {
-        User user = (User) o;
-        if (userService.isUserExists(user.getUsername()))
-            errors.rejectValue("username", "", "Пользователь с таким логином уже зарегистрирован");
+        UserDTO user = (UserDTO) o;
+        if (userServiceJPA.isUserExists(user.getUsername(), user.getEmail())) {
+            errors.rejectValue("username", "",
+                    "Пользователь с таким логином или почтой уже зарегистрирован");
+        }
     }
 }

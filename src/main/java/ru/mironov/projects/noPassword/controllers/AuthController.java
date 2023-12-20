@@ -9,8 +9,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import ru.mironov.projects.noPassword.dto.UserDTO;
 import ru.mironov.projects.noPassword.models.user.User;
-import ru.mironov.projects.noPassword.services.UserService;
+import ru.mironov.projects.noPassword.services.UserServiceJPA;
 import ru.mironov.projects.noPassword.util.UserErrorResponse;
 import ru.mironov.projects.noPassword.util.UserNotCreatedException;
 import ru.mironov.projects.noPassword.util.UserValidator;
@@ -20,12 +21,12 @@ import java.util.List;
 @RestController
 @RequestMapping("")
 public class AuthController {
-    private final UserService userService;
+    private final UserServiceJPA userServiceJPA;
     private final UserValidator userValidator;
 
     @Autowired
-    public AuthController(UserService userService, UserValidator userValidator) {
-        this.userService = userService;
+    public AuthController(UserServiceJPA userServiceJPA, UserValidator userValidator) {
+        this.userServiceJPA = userServiceJPA;
         this.userValidator = userValidator;
     }
 
@@ -39,7 +40,7 @@ public class AuthController {
     }
 
     @PostMapping("/registration")
-    public ResponseEntity<HttpStatus> registration(@RequestBody @Valid User registeredUser,
+    public ResponseEntity<HttpStatus> registration(@RequestBody @Valid UserDTO registeredUser,
                                                    BindingResult bindingResult) {
         userValidator.validate(registeredUser, bindingResult);
         if (bindingResult.hasErrors()) {
@@ -51,7 +52,7 @@ public class AuthController {
             throw new UserNotCreatedException(errorMsg.toString());
         }
 
-        userService.register(registeredUser);
+        userServiceJPA.save(registeredUser);
 
         return ResponseEntity.ok(HttpStatus.OK);
     }

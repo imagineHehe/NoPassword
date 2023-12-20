@@ -8,7 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import ru.mironov.projects.noPassword.models.user.User;
 import ru.mironov.projects.noPassword.security.UserDetailsImpl;
-import ru.mironov.projects.noPassword.services.UserService;
+import ru.mironov.projects.noPassword.services.UserServiceJPA;
 import ru.mironov.projects.noPassword.util.UserErrorResponse;
 import ru.mironov.projects.noPassword.util.UserNotFoundException;
 
@@ -18,11 +18,11 @@ import java.util.List;
 @RestController
 @RequestMapping("")
 public class UserController {
-    private final UserService userService;
+    private final UserServiceJPA userServiceJPA;
 
     @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public UserController(UserServiceJPA userServiceJPA) {
+        this.userServiceJPA = userServiceJPA;
     }
 
     //User control
@@ -38,13 +38,13 @@ public class UserController {
     @GetMapping("/admin/users")
     @ResponseBody
     public List<User> usersList() {
-        return userService.findAll();
+        return userServiceJPA.findAll();
     }
 
     @GetMapping("/admin/user/{id}")
     @ResponseBody
     public User oneUser(@PathVariable("id") int id) {
-        return userService.findOne(id);
+        return userServiceJPA.findOne(id);
     }
 
     //Handler
