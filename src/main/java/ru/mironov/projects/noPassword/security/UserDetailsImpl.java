@@ -4,6 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import ru.mironov.projects.noPassword.models.user.User;
+import ru.mironov.projects.noPassword.models.user.UserRole;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -17,7 +18,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singletonList(new SimpleGrantedAuthority(user.getRole().toString()));
+        return Collections.singletonList(new SimpleGrantedAuthority(UserRole.ROLE_USER.toString()));
     }
 
     @Override

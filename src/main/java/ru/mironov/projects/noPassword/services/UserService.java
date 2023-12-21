@@ -11,7 +11,7 @@ public interface UserService {
 
     User findOne(int id);
 
-    void save(UserDTO user);
+    void save(User user);
     boolean isUserExists(String username, String email);
 
 }

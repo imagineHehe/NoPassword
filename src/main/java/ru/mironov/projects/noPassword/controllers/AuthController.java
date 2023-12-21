@@ -34,13 +34,15 @@ public class AuthController {
     @GetMapping("/login")
     public ResponseEntity<HttpStatus> login() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (!authentication.getPrincipal().equals("anonymousUser"))
+        if (!authentication.getPrincipal().equals("anonymousUser")) {
+            System.out.println("Авторизация выполнена");
             return new ResponseEntity<HttpStatus>(HttpStatus.FOUND);
+        }
         return ResponseEntity.ok(HttpStatus.OK); //"Это страница логина, совершите Post запрос для входа";
     }
 
     @PostMapping("/registration")
-    public ResponseEntity<HttpStatus> registration(@RequestBody @Valid UserDTO registeredUser,
+    public ResponseEntity<HttpStatus> registration(@RequestBody @Valid User registeredUser,
                                                    BindingResult bindingResult) {
         userValidator.validate(registeredUser, bindingResult);
         if (bindingResult.hasErrors()) {

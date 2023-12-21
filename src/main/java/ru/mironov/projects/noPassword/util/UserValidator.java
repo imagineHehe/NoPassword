@@ -19,12 +19,12 @@ public class UserValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> aClass) {
-        return UserDTO.class.equals(aClass);
+        return User.class.equals(aClass);
     }
 
     @Override
     public void validate(Object o, Errors errors) {
-        UserDTO user = (UserDTO) o;
+        User user = (User) o;
         if (userServiceJPA.isUserExists(user.getUsername(), user.getEmail())) {
             errors.rejectValue("username", "",
                     "Пользователь с таким логином или почтой уже зарегистрирован");
