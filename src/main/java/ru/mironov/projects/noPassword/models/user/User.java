@@ -1,6 +1,7 @@
 package ru.mironov.projects.noPassword.models.user;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 
@@ -28,7 +29,8 @@ public class User {
     @Size(min = 10, message = "Данное поле должно содержать минимум 10 символов")
     @Column(name = "email")
     private String email;
-    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
+    @JsonManagedReference
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<Password> passwords;
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
