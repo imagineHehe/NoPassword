@@ -36,8 +36,10 @@ public class UserServiceJPA implements UserService {
         return user.get();
     }
     @Transactional
-    public void save(UserDTO user){
-        userRepository.save(convertToUser(user));
+    public void save(User user){
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
+        userRepository.save(user);
     }
 
 
@@ -46,16 +48,16 @@ public class UserServiceJPA implements UserService {
     }
 
 
-    private User convertToUser(UserDTO userDTO) {
-        User user = new User();
-        user.setUsername(userDTO.getUsername());
-        user.setPassword(userDTO.getPassword());
-        enrichUser(user);
-        return user;
-    }
-
-    private void enrichUser(User user) {
-        String encodedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(encodedPassword);
-    }
+//    private User convertToUser(UserDTO userDTO) {
+//        User user = new User();
+//        user.setUsername(userDTO.getUsername());
+//        user.setPassword(userDTO.getPassword());
+//        enrichUser(user);
+//        return user;
+//    }
+//
+//    private void enrichUser(User user) {
+//        String encodedPassword = passwordEncoder.encode(user.getPassword());
+//        user.setPassword(encodedPassword);
+//    }
 }

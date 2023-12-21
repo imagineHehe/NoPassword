@@ -28,7 +28,7 @@ public class User {
     @Size(min = 10, message = "Данное поле должно содержать минимум 10 символов")
     @Column(name = "email")
     private String email;
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     private List<Password> passwords;
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
