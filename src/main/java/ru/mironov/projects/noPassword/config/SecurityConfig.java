@@ -1,5 +1,6 @@
 package ru.mironov.projects.noPassword.config;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.context.annotation.Bean;
@@ -20,15 +21,9 @@ import ru.mironov.projects.noPassword.security.service.UserDetailsServiceImpl;
 
 @EnableWebSecurity
 @Configuration
+@RequiredArgsConstructor
 public class SecurityConfig {
     private final UserDetailsServiceImpl userDetailsServiceImpl;
-
-
-    @Autowired
-    public SecurityConfig(UserDetailsServiceImpl userDetailsServiceImpl) {
-        this.userDetailsServiceImpl = userDetailsServiceImpl;
-    }
-
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

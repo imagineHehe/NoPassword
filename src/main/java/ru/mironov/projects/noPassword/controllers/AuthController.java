@@ -1,6 +1,7 @@
 package ru.mironov.projects.noPassword.controllers;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,16 +21,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("")
+@RequiredArgsConstructor
 public class AuthController {
     private final UserServiceJPA userServiceJPA;
     private final UserValidator userValidator;
-
-    @Autowired
-    public AuthController(UserServiceJPA userServiceJPA, UserValidator userValidator) {
-        this.userServiceJPA = userServiceJPA;
-        this.userValidator = userValidator;
-    }
-
 
     @GetMapping("/login")
     public ResponseEntity<HttpStatus> login() {
