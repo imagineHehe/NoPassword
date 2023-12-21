@@ -35,7 +35,6 @@ public class AddAccount {
                         password.getLogin(),
                         password.getPassword())).token());
         password.setOwner(owner);
-        owner.setPasswords(Collections.singletonList(password));
         passwordService.save(password);
         return password;
     }

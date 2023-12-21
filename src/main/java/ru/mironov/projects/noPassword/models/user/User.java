@@ -7,10 +7,19 @@ import jakarta.validation.constraints.NotEmpty;
 
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import ru.mironov.projects.noPassword.models.password.Password;
 
+import java.util.ArrayList;
 import java.util.List;
 
+
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "users")
 public class User {
@@ -36,8 +45,6 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    public User() {
-    }
 
     public User(String username, String password, String email, List<Password> passwords, UserRole role) {
         this.username = username;
@@ -47,51 +54,9 @@ public class User {
         this.role = role;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public UserRole getRole() {
-        return role;
-    }
-
-    public void setRole(UserRole role) {
-        this.role = role;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public List<Password> getPasswords() {
-        return passwords;
-    }
-
-    public void setPasswords(List<Password> passwords) {
-        this.passwords = passwords;
+    public void addPassword(Password password) {
+        if (passwords == null)
+            passwords = new ArrayList<>();
+        passwords.add(password);
     }
 }
