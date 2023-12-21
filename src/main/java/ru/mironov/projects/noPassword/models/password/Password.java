@@ -1,5 +1,6 @@
 package ru.mironov.projects.noPassword.models.password;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import ru.mironov.projects.noPassword.models.user.User;
 
@@ -22,7 +23,8 @@ public class Password {
     private String password;
     @Column(name = "token")
     private String token;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JsonBackReference
+    @ManyToOne()
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User owner;
 
